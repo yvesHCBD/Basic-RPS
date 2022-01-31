@@ -5,20 +5,42 @@ function computerPlay(){
     let rng = Math.floor(Math.random() * (3 - 1 + 1 ) + 1)
     switch (rng){
         case 1: 
-            console.log("Rock")
+            return "Rock"
             break;
         case 2:
-            console.log("Paper")
+            return "Paper"
             break;
         case 3:
-            console.log("Scissors")
+            return "Scissors"
             break;
         default:
             console.log("Error Occurred")
     }
 }
 
+//let playerSelection = prompt("Enter Rock Paper or Scissors")
+
+
+function playRPS(playerSelection, computerSelection){
+    let player = playerSelection.toUpperCase()
+    let computer = computerSelection.toUpperCase()
+    if(player === computer){
+        console.log("TIE")
+    }else if (player === "ROCK" && computer === "SCISSORS"
+                || player === "PAPER" && computer === "ROCK"
+                || player === "SCISSORS" && computer === "PAPER"){
+                    console.log("PLAYER WINS!")
+                    console.log(`${playerSelection} beats ${computerSelection}`)
+                }else{
+                    console.log("COMPUTER WINS!")
+                    console.log(`${playerSelection} beats ${computerSelection}`);
+                }
+        
+            
+}
 
 
 
-
+playRPS("ROCK", "ROck")
+playRPS("scissors", "PAPER")
+playRPS("PAPER", "SCissoRs")
