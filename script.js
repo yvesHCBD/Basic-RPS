@@ -33,7 +33,7 @@ function playRPS(playerSelection, computerSelection){
                     console.log(`${playerSelection} beats ${computerSelection}`)
                 }else{
                     console.log("COMPUTER WINS!")
-                    console.log(`${playerSelection} beats ${computerSelection}`);
+                    console.log(`${computerSelection} beats ${playerSelection}`);
                 }
         
             
