@@ -1,82 +1,80 @@
-console.log("Welcome to Rock-Paper-Scissors!")
-
-
 function computerPlay(){
-    let rng = Math.floor(Math.random() * 3)
-    console.log(`Computer entered ${rng}.`);
-    switch (rng){
-        case 0: 
-            return "Rock"
-            break;
-        case 1:
-            return "Paper"
-            break;
-        case 2:
-            return "Scissors"
-            break;
-        default:
-            console.log("Error Occurred")
+    let rng = Math.floor(Math.random()*3);
+
+    switch(rng){
+        case(0):
+            console.log("Computer chose Rock");
+            return ("ROCK");
+        case(1):
+            console.log("Computer chose Paper");
+            return ("PAPER");
+        case(2):
+            console.log("Computer chose Scissors");
+            return ("SCISSORS");
     }
 }
-//let playerSelection = prompt("Enter Rock Paper or Scissors")
 
+function playerPrompt(){
+    let player = prompt("Rock, Paper, or Scissors");
 
-function playRPS(playerSelection, computerSelection){
-    let player = playerSelection.toUpperCase()
-    let computer = computerSelection.toUpperCase()
-    if(player === computer){
-        return ("TIE")
-    }else if (player === "ROCK" && computer === "SCISSORS"
-                || player === "PAPER" && computer === "ROCK"
-                || player === "SCISSORS" && computer === "PAPER"){
-                    return("PLAYER WINS!")
-                    //console.log(`${playerSelection} beats ${computerSelection}`)
-                }else{
-                    return("COMPUTER WINS!")
-                    //console.log(`${computerSelection} beats ${playerSelection}`);
-                }
-        
-            
+    console.log(`Player chose ${player}`);
+    return player.toUpperCase();
 }
 
-//RPS function working properly
+function playRPS(playerInput, computerInput){
+    if((playerInput === "ROCK" && computerInput === "SCISSORS") || (playerInput === "PAPER" && computerInput === "ROCK")
+        || playerInput === "SCISSORS" && computerInput === "PAPER"){
+        console.log(`${playerInput} beats ${computerInput}!`);
+        return ("PLAYER WINS");
+    }else if((computerInput === "ROCK" && playerInput === "SCISSORS") || (computerInput === "PAPER" && playerInput === "ROCK")
+        || computerInput === "SCISSORS" && playerInput === "PAPER"){
+        console.log(`${computerInput} beats ${playerInput}!`);
+        return ("COMPUTER WINS");
+    }else if(playerInput === computerInput){
+        return ("TIE");
+    }
+}
 
-
-playRPS("ROCK", "ROck")
-playRPS("scissors", "PAPER")
-playRPS("RoCk", "papeR")
-//testing
-playRPS("rock", computerPlay())
-
-
-console.log("==========================================================");
-
-function game() {
-
-    let playerCount = 0;
-    let computerCount = 0;
+function gemu(){
+    let playerWins = 0;
+    let computerWins = 0;
+    let gameCount = 1;
     let tieCount = 0;
-    
+    let score;
 
- 
     do{
-        if(playRPS("Paper",computerPlay()) === "PLAYER WINS!"){
-            playerCount++;
-            console.log(`Congratulations on winning game ${playerCount}`);
-        }else if(playRPS("Rock", computerPlay()) === "COMPUTER WINS!"){
-            computerCount++;
-            console.log(`Uh oh the computer won game ${computerCount}! Better luck next time.`);
-        }else{
-            tieCount++;
-            console.log('IT\'S A TIE! NO ONE WON');
+        score = playRPS(playerPrompt(), computerPlay());
+        switch(score){
+            case ("PLAYER WINS"):
+                console.log("CONGRATULATIONS ON WINNING");
+                console.log("--------------------------");
+                playerWins++;
+                gameCount++;
+                break;
+            case ("COMPUTER WINS"):
+                console.log("CONGRATULATIONS ON LOSING");
+                console.log("--------------------------");
+                computerWins++;
+                gameCount++;
+                break;
+            case ("TIE"):
+                console.log("IT'S A TIE");
+                console.log("--------------------------");
+                tieCount++;
+                gameCount++;
+                break;
+            default:
+                console.log("ERROR");
+                break;
         }
-    }while(playerCount != 3 && computerCount != 3)
+    }while(playerWins !== 3 && computerWins !== 3);
 
-    console.log(`Player wins: ${playerCount}`)
-    console.log(`Computer wins: ${computerCount}`);
-    console.log(`TIES: ${tieCount}`);
+
+    console.log(`Player Wins: ${playerWins}`);
+    console.log(`Computer Wins: ${computerWins}`);
+    console.log(`Ties: ${tieCount}`);
 
 }
 
-
-game()
+console.log("Welcome to a game of Rock-Paper-Scissors!");
+gemu();
